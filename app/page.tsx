@@ -101,21 +101,12 @@ export default function Home() {
           const { done, value } = await reader.read();
           if (done) break;
           const chunk = decoder.decode(value, { stream: true });
-          for (const line of chunk.split("\n")) {
-            if (line.trim().startsWith("data: ")) {
-              try {
-                const data = JSON.parse(line.slice(6));
-                if (data.type === "text-delta" && data.delta) {
-                  asstMsg += data.delta;
-                  setMessages((prev) => {
-                    const u = [...prev];
-                    u[u.length - 1] = { role: "assistant", content: asstMsg };
-                    return u;
-                  });
-                }
-              } catch { /* skip */ }
-            }
-          }
+          asstMsg += chunk;
+          setMessages((prev) => {
+            const u = [...prev];
+            u[u.length - 1] = { role: "assistant", content: asstMsg };
+            return u;
+          });
         }
       }
       setImage(null); setImagePreview(null);

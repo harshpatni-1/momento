@@ -47,7 +47,7 @@ export async function POST(req: Request) {
                 },
             ],
         });
-        return result.toUIMessageStreamResponse();
+        return result.toTextStreamResponse();
     }
 
     // Text-only mode: Groq is ultra-fast (~1-2s)
@@ -57,5 +57,5 @@ export async function POST(req: Request) {
         messages,
     });
 
-    return result.toUIMessageStreamResponse();
+    return result.toTextStreamResponse();
 }
