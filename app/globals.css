@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #B8BCFF;
+  --primary-dark: #9599E2;
+  --primary-deeper: #7478C5;
+  --primary-light: #D4D6FF;
+  --primary-pale: #EEEEFF;
+  --primary-glow: rgba(184, 188, 255, 0.3);
+
+  --bg-body: #FAFAFE;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F5F5FF;
+  --bg-input: #F0F0FA;
+
+  --text-primary: #1A1A2E;
+  --text-secondary: #6B6B8A;
+  --text-on-primary: #1A1A2E;
+
+  --border: rgba(184, 188, 255, 0.35);
+  --border-strong: rgba(184, 188, 255, 0.6);
+
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(26, 26, 46, 0.06);
+  --shadow-md: 0 4px 12px rgba(26, 26, 46, 0.08);
+  --shadow-lg: 0 8px 30px rgba(26, 26, 46, 0.1);
+  --shadow-glow: 0 0 20px var(--primary-glow);
+}
+
+@theme inline {
+  --color-background: var(--bg-body);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light !important;
+  background: #FAFAFE !important;
+}
+
+body {
+  background: var(--bg-body) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Buttons ─── */
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary-deeper);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.btn-outline:hover {
+  background: var(--primary-pale);
+  border-color: var(--primary);
+}
+
+/* ─── Cards ─── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.card-glow {
+  background: var(--bg-card);
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ─── Inputs ─── */
+.input-field {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-field::placeholder {
+  color: var(--text-secondary);
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+  background: white;
+}
+
+/* ─── Mode Pills ─── */
+.mode-pill {
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.mode-pill:hover {
+  border-color: var(--primary);
+  color: var(--text-primary);
+  background: var(--primary-pale);
+}
+
+.mode-pill.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-on-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-glow);
+}
+
+/* ─── Upload Zone ─── */
+.upload-zone {
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--primary-pale);
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: var(--primary-dark);
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ─── Chat Messages ─── */
+.chat-message {
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-md);
+  max-width: 85%;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  animation: msgSlide 0.3s ease;
+}
+
+.chat-message.user {
+  background: var(--primary);
+  color: var(--text-on-primary);
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-message.assistant {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+@keyframes msgSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Markdown in chat ─── */
+.chat-message.assistant h1,
+.chat-message.assistant h2,
+.chat-message.assistant h3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  color: var(--primary-deeper);
+}
+
+.chat-message.assistant h1 {
+  font-size: 1.15rem;
+}
+
+.chat-message.assistant h2 {
+  font-size: 1.05rem;
+}
+
+.chat-message.assistant h3 {
+  font-size: 0.95rem;
+}
+
+.chat-message.assistant ul,
+.chat-message.assistant ol {
+  padding-left: 1.25rem;
+  margin: 0.4rem 0;
+}
+
+.chat-message.assistant li {
+  margin-bottom: 0.2rem;
+}
+
+.chat-message.assistant code {
+  background: var(--primary-pale);
+  padding: 0.12rem 0.35rem;
+  border-radius: 4px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82em;
+  color: var(--primary-deeper);
+}
+
+.chat-message.assistant pre {
+  background: #1A1A2E;
+  color: #e2e8f0;
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin: 0.6rem 0;
+  border: 1px solid var(--border);
+}
+
+.chat-message.assistant pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.chat-message.assistant strong {
+  color: var(--primary-deeper);
+}
+
+/* ─── OTP Input ─── */
+.otp-input {
+  width: 3rem;
+  height: 3.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--bg-input);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+}
+
+.otp-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+  background: white;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 3px;
+}
+
+/* ─── Shimmer text ─── */
+.shimmer {
+  background: linear-gradient(90deg, var(--primary-deeper), var(--primary), var(--primary-deeper));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ─── Pulse ─── */
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ─── Hero gradient (login) ─── */
+.hero-gradient {
+  background: linear-gradient(135deg, #FAFAFE 0%, var(--primary-pale) 50%, #FAFAFE 100%);
+}
